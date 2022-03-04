@@ -24,7 +24,7 @@ var tableOfContents = function (content, target, options) {
 		headingLevel: 'h2',
                 headingClass: '',
 		listType: 'ul',
-                scrollspy: '"'
+                scrollspy: ''
 	};
 	var settings = {};
 
