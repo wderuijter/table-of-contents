@@ -22,7 +22,9 @@ var tableOfContents = function (content, target, options) {
 		levels: 'h2, h3, h4, h5, h6',
 		heading: 'Table of Contents',
 		headingLevel: 'h2',
-		listType: 'ul'
+                headingClass: '',
+		listType: 'ul',
+                scrollspy: ' class="uk-nav uk-nav-default" uk-scrollspy-nav="closest: li; scroll: true; offset:100"'
 	};
 	var settings = {};
 
@@ -52,7 +54,7 @@ var tableOfContents = function (content, target, options) {
 	 */
 	var createID = function (heading) {
 		if (heading.id.length) return;
-		heading.id = 'toc_' + heading.textContent.replace(/[^A-Za-z0-9]/g, '-');
+		heading.id = 'toc_' + heading.textContent.replace(/[^A-Za-z0-9]/g, '');
 	};
 
 	/**
@@ -76,7 +78,7 @@ var tableOfContents = function (content, target, options) {
 	var getOutdent = function (count) {
 		var html = '';
 		for (var i = 0; i < count; i++) {
-			html += '</' + settings.listType + '></li>';
+			html += '</' + settings.listType +'></li>';
 		}
 		return html;
 	};
@@ -122,8 +124,8 @@ var tableOfContents = function (content, target, options) {
 
 		// Inject the HTML into the DOM
 		toc.innerHTML =
-			'<' + settings.headingLevel + '>' + settings.heading + '</' + settings.headingLevel + '>' +
-			'<' + settings.listType + '>' +
+			'<' + settings.headingLevel + ' class="' + settings.headingClass + '">' + settings.heading + '</' + settings.headingLevel + '>' +
+			'<' + settings.listType + settings.scrollspy + '>' +
 				Array.prototype.map.call(headings, function (heading, index) {
 
 					// Add an ID if one is missing
@@ -138,7 +140,7 @@ var tableOfContents = function (content, target, options) {
 					// Generate the HTML
 					html +=
 						'<li>' +
-							'<a href="#' + heading.id + '">' +
+							'<a uk-scroll="offset:100" href="#' + heading.id + '">' +
 								heading.innerHTML.trim() +
 							'</a>';
 
