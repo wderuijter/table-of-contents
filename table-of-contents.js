@@ -24,7 +24,7 @@ var tableOfContents = function (content, target, options) {
 		headingLevel: 'h2',
                 headingClass: '',
 		listType: 'ul',
-                scrollspy: ' class="uk-nav uk-nav-default" uk-scrollspy-nav="closest: li; scroll: true; offset:100"'
+                scrollspy: '"'
 	};
 	var settings = {};
 
